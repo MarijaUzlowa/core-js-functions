@@ -142,16 +142,19 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  return function xX() {
-    for (let i = 0; i < attempts; i += 1) {
+  let numberAttempts = attempts;
+  let result = null;
+  function xX() {
+    while (!result && numberAttempts > 0) {
       try {
-        return func();
-      } catch (error) {
-        console.error('attempt', i + 1, 'fatal', error.message);
+        result = func();
+      } catch {
+        numberAttempts -= 1;
       }
     }
-    throw new Error('All error');
-  };
+    return result;
+  }
+  return xX;
 }
 
 /**
