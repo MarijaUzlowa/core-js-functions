@@ -32,13 +32,8 @@ function getCurrentFunctionName() {
  *   getFunctionBody(hiHello) => "function hiHello() { console.log('hello world'); }"
  *
  */
-function getFunctionBody(func) {
-  const fBoby = func.toString();
-  let fName = fBoby.match(/function\s+([^\s(]+)/);
-  fName = fName ? fName[1] : 'dcffdg';
-  const str = 'function ';
-  const str2 = '() ';
-  return str + fName + str2 + fBoby.slice(fBoby.indexOf('{'));
+function getFunctionBody(/* func */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -55,8 +50,8 @@ function getFunctionBody(func) {
  *  ]) => [0, 1, 2]
  *
  */
-function getArgumentsCount(/* funcs */) {
-  throw new Error('Not implemented');
+function getArgumentsCount(funcs) {
+  return funcs.map((func) => func.length);
 }
 
 /**
